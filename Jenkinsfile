@@ -4,12 +4,12 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '5'))
     }
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('nns15899-dockerhub')
+        DOCKERHUB_CREDENTIALS = credentials('docker-hub')
     }
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -t nns15899/dp-alpine:latest .'
+                sh 'docker build -t buluma/dp-alpine:latest .'
             }
         }
         stage('login') {
@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Push') {
             steps{
-                sh 'docker push nns15899/dp-alpine:latest'
+                sh 'docker push buluma/dp-alpine:latest'
             }           
         }
 
